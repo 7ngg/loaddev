@@ -1,0 +1,15 @@
+import { cn } from "@/lib/utils";
+
+export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
+
+export function Input({ className, ...props }: InputProps) {
+  return (
+    <input
+      {...props}
+      className={cn(
+        "w-64 h-8 px-3 py-1 rounded outline-none shadow bg-sky-500/50",
+        className,
+      )}
+    />
+  );
+}

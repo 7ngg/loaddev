@@ -1,8 +1,7 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export default function Button({ children, className, ...props }: ButtonProps) {
   return (

@@ -16,7 +16,7 @@ export default function Auth() {
             </h1>
             <SignInForm />
             <span>
-              Don't have an account yet?{" "}
+              {"Don't have an account yet? "}
               <strong
                 onClick={() => setIsSignIn(false)}
                 className="cursor-pointer hover:underline"

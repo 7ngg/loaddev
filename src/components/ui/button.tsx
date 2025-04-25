@@ -9,7 +9,7 @@ export default function Button({ children, className, ...props }: ButtonProps) {
       {...props}
       className={cn(
         className,
-        "w-24 h-8 outline shadow rounded cursor-pointer bg-[var(--foreground)] text-[var(--background)] active:scale-95 hover:opacity-90",
+        "w-24 h-8 shadow rounded cursor-pointer bg-gradient-to-r from-pink-500 via-putple-500 to-indigo-500 text-[var(--background)] active:scale-95 hover:opacity-90",
       )}
     >
       {children}

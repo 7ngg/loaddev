@@ -7,7 +7,7 @@ import ModeToggle from "./mode-toggle";
 
 export default function Navbar() {
   return (
-    <div className="h-12 min-w-screen fixed flex items-center justify-between px-8 my-2 font-bold text-xl">
+    <div className="z-10 h-12 min-w-screen fixed flex items-center justify-between px-8 my-2 font-bold text-xl">
       <Image src="/logo.png" alt="logo" width={200} height={100} priority />
       <div className="flex gap-8  h-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-transparent bg-clip-text">
         {navItems.map((item, index) => {

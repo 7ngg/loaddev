@@ -1,10 +1,10 @@
 "use client";
 
-import Button from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { signInSchema, SignInSchemaType } from "./schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "@/ui/input";
+import Button from "@/ui/button";
 
 export function SignInForm() {
   const {

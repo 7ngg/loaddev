@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/navbar";
-import { ThemeProvider } from "@/components/theme-provider";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 
 import { Nunito } from "next/font/google";
+import { ThemeProvider } from "@/shared/theme-provider";
+import Navbar from "@/widgets/navbar";
 const inter = Nunito({ subsets: ["latin"], variable: "--font-nunito" });
 
 export const metadata: Metadata = {

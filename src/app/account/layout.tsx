@@ -7,7 +7,7 @@ export default function AccountLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <Sidebar items={sidebarItems}/>
+      <Sidebar items={sidebarItems} />
       {children}
     </>
   );

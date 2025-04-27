@@ -15,9 +15,10 @@
     --accent-soft: #fb7185;
     --highlight: #ffe8e8;
 
-    --gradient-start: #fefcf9;
-    --gradient-middle: #f5e9da;
-    --gradient-end: #e2d3c2;
+    /* TODO: differenet gradients for different themes */
+    --gradient-start: #0f172a;
+    --gradient-middle: #1e293b;
+    --gradient-end: #fb7185;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));

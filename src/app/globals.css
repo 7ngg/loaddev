@@ -1,28 +1,55 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --background-lighter: color-mix(in srgb, var(--background) 90%, white);
-  --background-darker: color-mix(in srgb, var(--background) 80%, black);
+    --background: #ffffff;
+    --background-soft: #f9f9f9;
+    --background-lighter: color-mix(in srgb, var(--background) 90%, white);
+    --background-darker: color-mix(in srgb, var(--background) 80%, black);
+    --background-dark: #f3f4f6;
+
+    --foreground: #171717;
+    --foreground-soft: #555555;
+    --foreground-muted: #8c8c8c;
+
+    --accent: #f43f5e;
+    --accent-soft: #fb7185;
+    --highlight: #ffe8e8;
+
+    --gradient-start: #fefcf9;
+    --gradient-middle: #f5e9da;
+    --gradient-end: #e2d3c2;
 }
+
 @custom-variant dark (&:where(.dark, .dark *));
+
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --background-lighter: color-mix(in srgb, var(--background) 90%, white);
-  --background-darker: color-mix(in srgb, var(--background) 80%, black);
+    --background: #0a0a0a;
+    --background-soft: #111111;
+    --background-lighter: color-mix(in srgb, var(--background) 90%, white);
+    --background-darker: color-mix(in srgb, var(--background) 80%, black);
+    --background-dark: #1e293b;
+
+    --foreground: #ededed;
+    --foreground-soft: #cfcfcf;
+    --foreground-muted: #999999;
+
+    --accent: #fb7185;
+    --accent-soft: #f43f5e;
+    --highlight: #1e293b;
+
+    --gradient-start: #0f172a;
+    --gradient-middle: #1e293b;
+    --gradient-end: #fb7185;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-nunito: var(--font-nunito);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-nunito: var(--font-nunito);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-nunito);
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-nunito);
 }
-

@@ -30,8 +30,10 @@ export default function Navbar() {
   }, [selected]);
 
   return (
-    <div className="z-10 h-12 min-w-screen fixed flex items-center
-      justify-between px-8 mb-2 font-bold text-xl">
+    <div
+      className="z-10 h-12 min-w-screen fixed flex items-center
+      justify-between px-8 mb-2 font-bold text-xl"
+    >
       <Image src="/logo.png" alt="logo" width={200} height={100} priority />
 
       <div
@@ -49,7 +51,8 @@ export default function Navbar() {
             href={item.relativePath}
             key={index}
             onMouseEnter={() => setSelected(index)}
-            className="h-full flex items-center px-2 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500"
+            className="h-full flex items-center px-2 text-transparent select-none
+            bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500"
           >
             {item.name}
           </Link>
@@ -58,7 +61,7 @@ export default function Navbar() {
 
       <div className="flex gap-4 items-center">
         <ModeToggle />
-        <Link href={"/auth"}>
+        <Link href={"/auth"} className="select-none">
           <FontAwesomeIcon icon={faUser} />
         </Link>
       </div>

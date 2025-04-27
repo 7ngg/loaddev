@@ -14,7 +14,7 @@ export default function ModeToggle() {
   };
 
   return (
-    <span className="cursor-pointer" onClick={toggleTheme}>
+    <span className="cursor-pointer select-none" onClick={toggleTheme}>
       {resolvedTheme === "dark" ? "☀️" : "🌙"}
     </span>
   );

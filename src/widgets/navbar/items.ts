@@ -13,7 +13,7 @@ export const navItems: NavItem[] = [
   {
     name: "Courses",
     description: "Explore available coursec",
-    relativePath: "/"
+    relativePath: "/courses"
   },
   {
     name: "About",

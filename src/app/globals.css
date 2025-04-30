@@ -3,6 +3,7 @@
 :root {
     --background: #ffffff;
     --background-soft: #f9f9f9;
+    /*--background-lighter: oklch(94.1% 0.03 12.58);*/
     --background-lighter: color-mix(in srgb, var(--background) 90%, white);
     --background-darker: color-mix(in srgb, var(--background) 80%, black);
     --background-dark: #f3f4f6;

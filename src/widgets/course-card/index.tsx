@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDollar } from "@fortawesome/free-solid-svg-icons";
+import ProgressIndicator from "@/ui/progress-indicator";
 
 export interface CourseCardProps {
   course: Course;
@@ -20,6 +21,7 @@ export default function CourseCard(props: CourseCardProps) {
       shadow cursor-pointer"
     >
       <div className="flex items-center gap-4">
+        <ProgressIndicator isCompleted={props.course.isCompleted} />
         <Image
           src={props.course.image}
           alt="course-logo"

@@ -3,4 +3,5 @@ export interface Course {
   image: string
   description: string
   price: number
+  isCompleted: boolean
 }

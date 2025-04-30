@@ -8,6 +8,7 @@ const items = [
       "https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/U6Plt0N.png",
     description: "Mipt course on C++ development",
     price: 99.9,
+    isCompleted: false,
   },
   {
     title: "Learn Go",
@@ -15,6 +16,7 @@ const items = [
       "https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/3elNhQu.png",
     description: "Mipt course on C++ development",
     price: 87.9,
+    isCompleted: true,
   },
   {
     title: "Learn SQL",
@@ -22,6 +24,7 @@ const items = [
       "https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/TDs5Gpg.png",
     description: "Mipt course on C++ development",
     price: 39.9,
+    isCompleted: true,
   },
 ];
 

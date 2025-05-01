@@ -1,5 +1,3 @@
-"use client";
-
 import { useForm } from "react-hook-form";
 import { signInSchema, SignInSchemaType } from "./schemas";
 import { zodResolver } from "@hookform/resolvers/zod";

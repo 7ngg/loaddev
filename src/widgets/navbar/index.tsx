@@ -31,7 +31,7 @@ export default function Navbar() {
 
   return (
     <div
-      className="z-10 h-12 min-w-screen absolute top-0 left-0 flex items-center
+      className="z-10 h-12 min-w-screen fixed top-0 left-0 flex items-center
       justify-between px-8 mb-2 font-bold text-xl"
     >
       <Image src="/logo.png" alt="logo" width={200} height={100} priority />

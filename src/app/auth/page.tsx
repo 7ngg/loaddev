@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { SignInForm } from "./sign-in";
 import { SignUpForm } from "./sign-up";
+import useAuthStore from "@/shared/store/auth-store";
 
 export default function Auth() {
-  const [isSignIn, setIsSignIn] = useState(true);
+  const isSignIn = useAuthStore((state) => state.isSignIn);
+  const toggle = useAuthStore((state) => state.toggle);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[var(--background)] px-4">
@@ -19,7 +21,7 @@ export default function Auth() {
             <span>
               {"Don't have an account yet? "}
               <strong
-                onClick={() => setIsSignIn(false)}
+                onClick={toggle}
                 className="cursor-pointer hover:underline"
               >
                 Sign up!
@@ -34,10 +36,7 @@ export default function Auth() {
             <SignUpForm />
             <span>
               {"Already have an account? "}
-              <strong
-                onClick={() => setIsSignIn(true)}
-                className="cursor-pointer hover:underline"
-              >
+              <strong onClick={toggle} className="cursor-pointer hover:underline">
                 Sign in!
               </strong>
             </span>

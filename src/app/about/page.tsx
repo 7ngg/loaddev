@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
   faCode, 
@@ -17,12 +17,6 @@ export default function AboutPage() {
   const { theme } = useTheme();
   const containerRef = useRef(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
 
   const getGradientColors = () => {
     if (theme === 'dark') {
@@ -67,15 +61,10 @@ export default function AboutPage() {
     };
   }, []);
 
-  const mouseX = useTransform(scrollYProgress, [0, 1], [0, 100]);
-  const mouseY = useTransform(scrollYProgress, [0, 1], [0, 100]);
-
   return (
     <div 
       ref={containerRef} 
       className={`min-h-screen bg-gradient-to-br ${colors.background} relative overflow-hidden pt-16`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 
@@ -129,15 +118,14 @@ export default function AboutPage() {
         }}
         transition={{
           type: "spring",
-          damping: 50, 
+          damping: 50,
           stiffness: 100,
-          mass: 3 
+          mass: 3
         }}
       >
         <div className={`absolute inset-0 bg-gradient-to-r ${colors.accent} rounded-full blur-3xl opacity-10`} />
       </motion.div>
 
-      
       <div className="absolute inset-0">
         {[...Array(20)].map((_, i) => (
           <motion.div
@@ -146,13 +134,13 @@ export default function AboutPage() {
             animate={{
               x: [0, Math.random() * 200 - 100],
               y: [0, Math.random() * 200 - 100],
-              scale: [0, 0.8, 0], 
+              scale: [0, 0.8, 0],
             }}
             transition={{
-              duration: Math.random() * 5 + 5, 
+              duration: Math.random() * 5 + 5,
               repeat: Infinity,
-              delay: Math.random() * 2, 
-              ease: "easeInOut" 
+              delay: Math.random() * 2,
+              ease: "easeInOut"
             }}
             style={{
               left: `${Math.random() * 100}%`,

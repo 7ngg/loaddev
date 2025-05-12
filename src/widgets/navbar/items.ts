@@ -18,7 +18,7 @@ export const navItems: NavItem[] = [
   {
     name: "About",
     description: "Read about our platform",
-    relativePath: "/"
+    relativePath: "/about"
   },
 ]
 

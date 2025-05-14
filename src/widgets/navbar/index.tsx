@@ -1,7 +1,7 @@
 "use client";
 
 import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
-import { faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { faSignOut, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,6 +10,8 @@ import ModeToggle from "./mode-toggle";
 import { useEffect, useRef, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { cn } from "@/lib/utils";
+import { useBasketStore } from "@/shared/store/basket-store";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
   const { data: session, status } = useSession();
@@ -17,6 +19,7 @@ export default function Navbar() {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const underlineRef = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
+  const { items } = useBasketStore();
 
   useEffect(() => {
     if (selected === null) {
@@ -78,6 +81,20 @@ export default function Navbar() {
       </div>
 
       <div className="flex gap-4 items-center">
+        <Link href="/basket" className="relative">
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="p-2 rounded-full hover:bg-[var(--background-lighter)] transition-colors"
+          >
+            <FontAwesomeIcon icon={faShoppingCart} />
+            {items.length > 0 && (
+              <span className="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {items.length}
+              </span>
+            )}
+          </motion.div>
+        </Link>
         <ModeToggle />
         <div className="relative" ref={userMenuRef}>
           <button

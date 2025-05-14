@@ -2,22 +2,18 @@
 
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
-
-interface Course {
-  id: string;
-  title: string;
-  description: string;
-  level: string;
-  duration: string;
-  lessons: number;
-  exercises: number;
-}
+import { useBasketStore } from "@/shared/store/basket-store";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import type { Course } from "@/widgets/course-card/types";
 
 const courses: Course[] = [
   {
     id: "javascript-basics",
     title: "JavaScript Fundamentals",
     description: "Master the basics of JavaScript programming",
+    image: "https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/U6Plt0N.png",
+    price: 49.99,
     level: "Beginner",
     duration: "4 weeks",
     lessons: 24,
@@ -27,6 +23,8 @@ const courses: Course[] = [
     id: "python-basics",
     title: "Python Programming",
     description: "Learn Python from scratch with practical examples",
+    image: "https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/TDs5Gpg.png",
+    price: 59.99,
     level: "Beginner",
     duration: "6 weeks",
     lessons: 30,
@@ -36,6 +34,8 @@ const courses: Course[] = [
     id: "typescript-advanced",
     title: "TypeScript Mastery",
     description: "Advanced TypeScript patterns and best practices",
+    image: "https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/3elNhQu.png",
+    price: 79.99,
     level: "Advanced",
     duration: "8 weeks",
     lessons: 32,
@@ -45,6 +45,8 @@ const courses: Course[] = [
     id: "java-basics",
     title: "Java Programming",
     description: "Learn Java programming fundamentals",
+    image: "https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/U6Plt0N.png",
+    price: 69.99,
     level: "Intermediate",
     duration: "8 weeks",
     lessons: 36,
@@ -54,6 +56,7 @@ const courses: Course[] = [
 
 export default function CoursesPage() {
   const { theme } = useTheme();
+  const { addItem, isInBasket } = useBasketStore();
 
   const getGradientColors = () => {
     if (theme === 'dark') {
@@ -144,7 +147,7 @@ export default function CoursesPage() {
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {courses.map((course: Course, index: number) => (
             <motion.div
               key={course.id}
@@ -171,10 +174,10 @@ export default function CoursesPage() {
                 <div className={`absolute inset-0 bg-gradient-to-br ${theme === 'dark' ? 'from-slate-900/90 via-slate-800/90 to-slate-900/90' : 'from-white/90 via-white/90 to-white/90'} rounded-2xl`} />
               </motion.div>
               
-              <div className="relative z-10">
+              <div className="relative z-10 h-full flex flex-col">
                 <motion.h2 
                   whileHover={{ x: 5 }}
-                  className={`text-2xl font-bold mb-3 bg-gradient-to-r ${colors.accent} bg-clip-text text-transparent`}
+                  className={`text-2xl font-bold bg-gradient-to-r ${colors.accent} bg-clip-text text-transparent mb-3`}
                 >
                   {course.title}
                 </motion.h2>
@@ -196,46 +199,71 @@ export default function CoursesPage() {
                   >
                     {course.duration}
                   </motion.span>
+                  <motion.span 
+                    whileHover={{ scale: 1.05 }}
+                    className={`px-4 py-1.5 ${theme === 'dark' ? 'bg-violet-500/20 text-violet-300' : 'bg-violet-500/20 text-violet-700'} rounded-full text-sm font-medium`}
+                  >
+                    ${course.price}
+                  </motion.span>
                 </div>
 
-                <div className={`flex items-center gap-4 ${colors.textMuted}`}>
-                  <motion.div 
+                <div className="flex-grow">
+                  <div className={`flex items-center gap-4 ${colors.textMuted}`}>
+                    <motion.div 
+                      whileHover={{ scale: 1.1 }}
+                      className="flex items-center gap-2"
+                    >
+                      <motion.span 
+                        animate={{ 
+                          scale: [1, 1.2, 1],
+                          opacity: [0.5, 1, 0.5]
+                        }}
+                        transition={{ 
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                        className={`w-2 h-2 rounded-full ${theme === 'dark' ? 'bg-sky-500' : 'bg-blue-500'}`}
+                      />
+                      <span>{course.lessons} lessons</span>
+                    </motion.div>
+                    <motion.div 
+                      whileHover={{ scale: 1.1 }}
+                      className="flex items-center gap-2"
+                    >
+                      <motion.span 
+                        animate={{ 
+                          scale: [1, 1.2, 1],
+                          opacity: [0.5, 1, 0.5]
+                        }}
+                        transition={{ 
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: 1
+                        }}
+                        className={`w-2 h-2 rounded-full ${theme === 'dark' ? 'bg-indigo-500' : 'bg-indigo-500'}`}
+                      />
+                      <span>{course.exercises} exercises</span>
+                    </motion.div>
+                  </div>
+                </div>
+
+                <div className="flex justify-end mt-6">
+                  <motion.button
                     whileHover={{ scale: 1.1 }}
-                    className="flex items-center gap-2"
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => addItem(course)}
+                    disabled={Boolean(isInBasket(course.id))}
+                    className={`px-6 py-2 rounded-full transition-colors ${
+                      Boolean(isInBasket(course.id))
+                        ? 'bg-green-500/20 text-green-500 cursor-not-allowed'
+                        : 'bg-blue-500 text-white hover:bg-blue-600'
+                    }`}
                   >
-                    <motion.span 
-                      animate={{ 
-                        scale: [1, 1.2, 1],
-                        opacity: [0.5, 1, 0.5]
-                      }}
-                      transition={{ 
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                      className={`w-2 h-2 rounded-full ${theme === 'dark' ? 'bg-sky-500' : 'bg-blue-500'}`}
-                    />
-                    <span>{course.lessons} lessons</span>
-                  </motion.div>
-                  <motion.div 
-                    whileHover={{ scale: 1.1 }}
-                    className="flex items-center gap-2"
-                  >
-                    <motion.span 
-                      animate={{ 
-                        scale: [1, 1.2, 1],
-                        opacity: [0.5, 1, 0.5]
-                      }}
-                      transition={{ 
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: 1
-                      }}
-                      className={`w-2 h-2 rounded-full ${theme === 'dark' ? 'bg-indigo-500' : 'bg-indigo-500'}`}
-                    />
-                    <span>{course.exercises} exercises</span>
-                  </motion.div>
+                    <FontAwesomeIcon icon={faShoppingCart} className="mr-2" />
+                    {Boolean(isInBasket(course.id)) ? 'In Cart' : 'Add to Cart'}
+                  </motion.button>
                 </div>
               </div>
             </motion.div>

@@ -23,15 +23,16 @@ export default function Home() {
           className="max-w-3xl text-center text-3xl font-medium
           bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent"
         >
-          Some serious text
+          Learn anything, anywhere
         </h1>
         <p
           className="my-6 max-w-xl text-center text-base leading-relaxed
           text-gray-400"
         >
-          Less serious text but still pretty serious
+          Learn anything, anywhere, anytime
         </p>
-        <motion.button
+        <motion.a
+          href="/courses"
           whileHover={{ scale: 1.015 }}
           whileTap={{ scale: 0.985 }}
           style={{ border, boxShadow }}
@@ -39,13 +40,13 @@ export default function Home() {
           roudend-full px-4 py-2 transition-colors cursor-pointer rounded-full
           outline-none"
         >
-          Some button text
+          Our courses
           <FontAwesomeIcon
             className="transition-transform group-hover:-rotate-45 
             group-active:-rotate-12"
             icon={faArrowRight}
           />
-        </motion.button>
+        </motion.a>
       </div>
     </motion.section>
   );

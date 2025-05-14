@@ -6,7 +6,9 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 export interface SidebarItem {
   title: string;
@@ -18,8 +20,23 @@ export interface SidebarProps {
 }
 
 export default function Sidebar(props: SidebarProps) {
-  const [active, setActive] = useState("");
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(true);
+
+  // Load sidebar state from localStorage on mount
+  useEffect(() => {
+    const savedState = localStorage.getItem('sidebarOpen');
+    if (savedState !== null) {
+      setIsOpen(savedState === 'true');
+    }
+  }, []);
+
+  // Save sidebar state to localStorage
+  const toggleSidebar = () => {
+    const newState = !isOpen;
+    setIsOpen(newState);
+    localStorage.setItem('sidebarOpen', String(newState));
+  };
 
   return (
     <div
@@ -33,24 +50,25 @@ export default function Sidebar(props: SidebarProps) {
           "min-h-screen w-60 bg-[var(--background-darker)] flex flex-col gap-4 justify-baseline px-4 py-32",
         )}
       >
-        {props.items.map((d, i) => {
+        {props.items.map((item) => {
+          const isActive = pathname === item.href;
           return (
-            <div
-              key={i}
-              onClick={() => setActive(d.title)}
+            <Link
+              key={item.href}
+              href={item.href}
               className={cn(
-                `${active == d.title ? "inset-shadow-black scale-105" : ""}`,
-                "w-full py-2 bg-[var(--background-lighter)] rounded-md text-center cursor-pointer font-bold ",
+                isActive ? "inset-shadow-black scale-105" : "",
+                "w-full py-2 bg-[var(--background-lighter)] rounded-md text-center cursor-pointer font-bold",
                 "hover:scale-105 duration-150 active:scale-95 select-none",
               )}
             >
-              {d.title}
-            </div>
+              {item.title}
+            </Link>
           );
         })}
       </aside>
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleSidebar}
         className={cn(
           "h-24 rounded-r justify-self-center bg-transparent p-4",
           "cursor-pointer hover:bg-[var(--background-darker)]",

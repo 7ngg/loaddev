@@ -40,7 +40,7 @@ console.log(isTrue);
   language: "javascript"
 };
 
-export default function TaskPage({ params }: { params: { courseId: string; taskId: string } }) {
+export default function TaskPage() {
   const { theme } = useTheme();
   const [code, setCode] = useState(sampleTask.initialCode);
   const [isResizing, setIsResizing] = useState(false);

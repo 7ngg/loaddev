@@ -154,7 +154,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\farma_gi04\\loaddev\\src\\generated\\prisma",
+      "value": "/home/tng/workspace/loaddev/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -163,12 +163,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "debian-openssl-3.0.x",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\farma_gi04\\loaddev\\prisma\\schema.prisma",
+    "sourceFilePath": "/home/tng/workspace/loaddev/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -182,11 +182,12 @@ const config = {
     "db"
   ],
   "activeProvider": "sqlite",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "file:./dev.db"
+        "value": null
       }
     }
   },

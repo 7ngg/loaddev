@@ -4,11 +4,25 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Only show theme-dependent content after mounting
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const getGradientColors = () => {
+    if (!mounted) {
+      return {
+        background: 'from-blue-50 via-indigo-50 to-violet-50',
+        accent: 'from-blue-600 via-indigo-600 to-violet-600',
+      };
+    }
+    
     if (theme === 'dark') {
       return {
         background: 'from-slate-900 via-slate-800 to-slate-900',
@@ -36,7 +50,7 @@ export default function Home() {
             repeat: Infinity,
             ease: "linear"
           }}
-          className={`absolute -top-40 -left-40 w-96 h-96 ${theme === 'dark' ? 'bg-indigo-500/20' : 'bg-blue-500/20'} rounded-full blur-3xl`}
+          className={`absolute -top-40 -left-40 w-96 h-96 ${mounted && theme === 'dark' ? 'bg-indigo-500/20' : 'bg-blue-500/20'} rounded-full blur-3xl`}
         />
         <motion.div 
           animate={{ 
@@ -48,7 +62,7 @@ export default function Home() {
             repeat: Infinity,
             ease: "linear"
           }}
-          className={`absolute top-60 -right-40 w-96 h-96 ${theme === 'dark' ? 'bg-sky-500/20' : 'bg-indigo-500/20'} rounded-full blur-3xl`}
+          className={`absolute top-60 -right-40 w-96 h-96 ${mounted && theme === 'dark' ? 'bg-sky-500/20' : 'bg-indigo-500/20'} rounded-full blur-3xl`}
         />
         <motion.div 
           animate={{ 
@@ -60,7 +74,7 @@ export default function Home() {
             repeat: Infinity,
             ease: "linear"
           }}
-          className={`absolute -bottom-40 left-1/2 w-96 h-96 ${theme === 'dark' ? 'bg-violet-500/20' : 'bg-violet-500/20'} rounded-full blur-3xl`}
+          className={`absolute -bottom-40 left-1/2 w-96 h-96 ${mounted && theme === 'dark' ? 'bg-violet-500/20' : 'bg-violet-500/20'} rounded-full blur-3xl`}
         />
       </div>
 

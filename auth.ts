@@ -4,10 +4,10 @@ import Google from "next-auth/providers/google";
 import Discord from "next-auth/providers/discord";
 import Credentials from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { PrismaClient } from "@/generated/prisma";
 import { authenticateUser } from "@/app/auth/actions";
 import type { DefaultSession } from "next-auth";
 import "next-auth/jwt";
+import { PrismaClient } from "@/generated/prisma";
 
 const prisma = new PrismaClient();
 

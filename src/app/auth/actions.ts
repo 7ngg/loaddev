@@ -1,8 +1,8 @@
 'use server';
 
-import { PrismaClient } from '@/generated/prisma';
 import bcrypt from 'bcryptjs';
 import { SignUpSchemaType, SignInSchemaType } from './schemas';
+import { PrismaClient } from '@/generated/prisma';
 
 const prisma = new PrismaClient();
 

@@ -1,7 +1,12 @@
 export interface Course {
-  title: string
-  image: string
-  description: string
-  price: number
-  isCompleted: boolean
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  price: number;
+  isCompleted?: boolean;
+  level: string;
+  duration: string;
+  lessons: number;
+  exercises: number;
 }

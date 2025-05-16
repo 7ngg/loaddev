@@ -3,18 +3,36 @@ import { Input } from "@/ui/input";
 import { useForm } from "react-hook-form";
 import { signUpSchema, SignUpSchemaType } from "./schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { registerUser } from "./actions";
 
 export function SignUpForm() {
+  const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<SignUpSchemaType>({
     resolver: zodResolver(signUpSchema),
   });
 
-  const onSubmit = () => {
-    console.log("Processing sign up...");
+  const onSubmit = async (data: SignUpSchemaType) => {
+    try {
+      setError(null);
+      const result = await registerUser(data);
+      
+      if (result.error) {
+        setError(result.error);
+        return;
+      }
+      
+      router.push('/auth?mode=signin');
+    } catch (err) {
+      console.error('Sign-up error:', err);
+      setError('Failed to create account. Please try again later.');
+    }
   };
 
   return (
@@ -28,8 +46,11 @@ export function SignUpForm() {
           <span className="text-rose-600">{errors.username.message}</span>
         )}
       </div>
-      <div>
+      <div className="flex flex-col items-center">
         <Input {...register("email")} placeholder="Email" type="email" />
+        {errors.email && (
+          <span className="text-rose-600">{errors.email.message}</span>
+        )}
       </div>
       <div className="flex flex-col items-center">
         <Input
@@ -53,7 +74,12 @@ export function SignUpForm() {
           </span>
         )}
       </div>
-      <Button type="submit">Sign in</Button>
+      {error && (
+        <div className="text-rose-600 text-sm text-center">{error}</div>
+      )}
+      <Button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? "Creating account..." : "Sign up"}
+      </Button>
     </form>
   );
 }

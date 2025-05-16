@@ -2,19 +2,18 @@
 
 :root {
     --background: #ffffff;
-    --background-soft: #f9f9f9;
-    /*--background-lighter: oklch(94.1% 0.03 12.58);*/
-    --background-lighter: color-mix(in srgb, var(--background) 90%, white);
-    --background-darker: color-mix(in srgb, var(--background) 80%, black);
-    --background-dark: #f3f4f6;
+    --background-soft: #f8f9fa;
+    --background-lighter: #f1f3f5;
+    --background-darker: #e9ecef;
+    --background-dark: #dee2e6;
 
-    --foreground: #171717;
-    --foreground-soft: #555555;
-    --foreground-muted: #8c8c8c;
+    --foreground: #212529;
+    --foreground-soft: #495057;
+    --foreground-muted: #868e96;
 
     --accent: #f43f5e;
     --accent-soft: #fb7185;
-    --highlight: #ffe8e8;
+    --highlight: #fff5f5;
 
     /* TODO: differenet gradients for different themes */
     --gradient-start: #0f172a;
@@ -26,14 +25,14 @@
 
 .dark {
     --background: #0a0a0a;
-    --background-soft: #111111;
-    --background-lighter: color-mix(in srgb, var(--background) 90%, white);
-    --background-darker: color-mix(in srgb, var(--background) 80%, black);
-    --background-dark: #1e293b;
+    --background-soft: #141414;
+    --background-lighter: #1a1a1a;
+    --background-darker: #222222;
+    --background-dark: #2a2a2a;
 
-    --foreground: #ededed;
-    --foreground-soft: #cfcfcf;
-    --foreground-muted: #999999;
+    --foreground: #f8f9fa;
+    --foreground-soft: #e9ecef;
+    --foreground-muted: #adb5bd;
 
     --accent: #fb7185;
     --accent-soft: #f43f5e;
